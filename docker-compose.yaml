@@ -11,7 +11,7 @@ services:
     image: mysql:v1.0.0
     container_name: mysql
     volumes:
-      - source: mysql
+      - source: mysqldb
         target: /var/lib/mysql
         type: volume
   backend:
