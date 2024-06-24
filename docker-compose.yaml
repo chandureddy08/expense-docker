@@ -9,6 +9,7 @@ services:
   backend:
     image: backend:v1.0.0
     conatainer_name: backend
+    command: sh -c "slepp 20 && node /opt/server/index.js"
     depends_on:
       - mysql
   frontend:
