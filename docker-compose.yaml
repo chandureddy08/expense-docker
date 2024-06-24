@@ -1,11 +1,15 @@
+version: '3.8'
 name: expense
 networks:
   default:
     name: expense
+volumes:
+  mysqldb: 
 services:
   mysql:
     image: mysql:v1.0.0
     container_name: mysql
+    volumes: mysqldb:/var/lib/mysql
   backend:
     image: backend:v1.0.0
     container_name: backend
