@@ -12,8 +12,9 @@ COPY scripts/*.sql /docker-entrypoint-initdb.d/
 # Create a non-root user and group
 RUN groupadd -r myusergroup && useradd -r -g myusergroup myuser
 
-# Change ownership of necessary directories
-RUN chown -R myuser:myusergroup /var/lib/mysql /var/run/mysqld /docker-entrypoint-initdb.d
+# Ensure the non-root user has permissions to the required directories and files
+RUN mkdir -p /var/run/mysqld && \
+    chown -R myuser:myusergroup /var/lib/mysql /var/run/mysqld /docker-entrypoint-initdb.d /etc/mysql
 
 # Switch to the non-root user
 USER myuser
